@@ -1,0 +1,7 @@
+History.txt
+Manifest.txt
+README.txt
+Rakefile
+bin/idn_actionmailer
+lib/idn_actionmailer.rb
+test/test_idn_actionmailer.rb
