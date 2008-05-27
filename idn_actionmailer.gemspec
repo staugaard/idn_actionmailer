@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
   s.has_rdoc = false
   s.authors = ["Mick Staugaard"]
   s.files = ["History.txt", "README.txt", "Rakefile", "idn_actionmailer.gemspec", "lib/idn_actionmailer.rb"]
-  s.test_files = ["test/test_idn_actionmailer.rb", "test/fixtures/test_mailer/signed_up_with_url.erb", "test/fixtures/test_mailer/signed_up_with_url.rhtml"]
+  s.test_files = ["test/test_encoding.rb", "test/test_idn_actionmailer.rb", "test/fixtures/test_mailer/signed_up_with_url.erb", "test/fixtures/test_mailer/signed_up_with_url.rhtml"]
   s.rdoc_options = ["--main", "README.txt"]
   s.extra_rdoc_files = ["History.txt", "README.txt"]
   s.add_dependency("actionmailer", [">= 2.0.2"])

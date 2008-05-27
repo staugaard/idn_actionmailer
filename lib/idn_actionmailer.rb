@@ -4,7 +4,7 @@ require 'punycode'
 require 'actionmailer'
 
 class IdnActionmailer
-  VERSION = '1.0.0'
+  VERSION = '0.2'
   
   UTF8REGEX = /\A(?:                                                            
                 [\x09\x0A\x0D\x20-\x7E]            # ASCII
