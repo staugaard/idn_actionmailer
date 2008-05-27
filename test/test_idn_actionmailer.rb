@@ -15,7 +15,6 @@ class TestMailer < ActionMailer::Base
     @sent_on      = Time.local(2004, 12, 12)
 
     @body["recipient"]   = recipient
-    @body["welcome_url"] = url_for :host => "example.com", :controller => "welcome", :action => "greeting"
   end
 
   class <<self
@@ -47,15 +46,9 @@ class ActionMailerUrlTest < Test::Unit::TestCase
     ActionMailer::Base.delivery_method = :test
     ActionMailer::Base.perform_deliveries = true
     ActionMailer::Base.deliveries = []
-
-    @recipient = 'bla <mick@brændendekærlighed.dk>'
   end
 
-  def test_signed_up_with_url
-    ActionController::Routing::Routes.draw do |map| 
-      map.connect ':controller/:action/:id' 
-      map.welcome 'welcome', :controller=>"foo", :action=>"bar"
-    end
+  def test_single_address
 
     expected = new_mail
     expected.to      = 'bla <mick@xn--brndendekrlighed-vobh.dk>'
@@ -65,14 +58,26 @@ class ActionMailerUrlTest < Test::Unit::TestCase
     expected.date    = Time.local(2004, 12, 12)
 
     created = nil
-    assert_nothing_raised { created = TestMailer.create_signed_up_with_url(@recipient) }
+    assert_nothing_raised { created = TestMailer.create_signed_up_with_url('bla <mick@brændendekærlighed.dk>') }
     assert_not_nil created
     assert_equal expected.encoded, created.encoded
 
-    assert_nothing_raised { TestMailer.deliver_signed_up_with_url(@recipient) }
+    assert_nothing_raised { TestMailer.deliver_signed_up_with_url('bla <mick@brændendekærlighed.dk>') }
     assert_not_nil ActionMailer::Base.deliveries.first
     assert_equal expected.encoded, ActionMailer::Base.deliveries.first.encoded
-    
-    puts ActionMailer::Base.deliveries.first
+  end
+
+  def test_multi_addresses
+    expected = new_mail
+    expected.to      = ['bla <mick@xn--brndendekrlighed-vobh.dk>', 'mick@xn--brndendekrlighed-vobh.dk']
+    expected.subject = "[Signed up] Welcome"
+    expected.body    = "Hello there"
+    expected.from    = "bla <system@loudthinking.com>"
+    expected.date    = Time.local(2004, 12, 12)
+
+    created = nil
+    assert_nothing_raised { created = TestMailer.create_signed_up_with_url(['bla <mick@brændendekærlighed.dk>', 'mick@brændendekærlighed.dk']) }
+    assert_not_nil created
+    assert_equal expected.encoded, created.encoded
   end
 end
