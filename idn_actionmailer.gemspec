@@ -2,10 +2,10 @@ Gem::Specification.new do |s|
   s.name = "idn_actionmailer"
   s.version = "0.2"
   s.date = "2008-05-27"
-  s.summary = "monkey path for ActionMailer to support international domain names"
+  s.summary = "monkey patch for ActionMailer to support international domain names"
   s.email = "mick@staugaard.com"
   s.homepage = "http://github.com/staugaard/idn_actionmailer"
-  s.description = "monkey path for ActionMailer to support international domain names"
+  s.description = "monkey patch for ActionMailer to support international domain names"
   s.has_rdoc = false
   s.authors = ["Mick Staugaard"]
   s.files = ["History.txt", "README.txt", "Rakefile", "idn_actionmailer.gemspec", "lib/idn_actionmailer.rb"]
