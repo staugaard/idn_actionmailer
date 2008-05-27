@@ -1,6 +1,6 @@
-=== 1.0.0 / 2008-05-15
+=== 0.2 / 2008-05-27
 
 * 1 major enhancement
 
-  * Birthday!
+  * Implemented the main feature
 
